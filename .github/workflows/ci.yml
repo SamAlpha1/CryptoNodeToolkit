@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n node-toolkit.sh
+      - run: SERVICE_PATTERN=definitely-not-a-service RPC_HOST=127.0.0.1 RPC_PORT=9 bash node-toolkit.sh
